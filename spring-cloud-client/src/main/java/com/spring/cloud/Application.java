@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -19,7 +20,10 @@ public class Application {
 	@Bean
     @LoadBalanced
     RestTemplate restTemplate(){
-        return new RestTemplate();
+		HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+		httpRequestFactory.setReadTimeout(5000);
+		httpRequestFactory.setConnectTimeout(5000);
+		return new RestTemplate(httpRequestFactory);
     }
 
 }
