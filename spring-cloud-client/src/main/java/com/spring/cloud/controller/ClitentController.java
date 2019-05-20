@@ -8,6 +8,7 @@ import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,9 +24,9 @@ public class ClitentController {
     private RestTemplate restTemplate;
 	
 	@ResponseBody
-    //@HystrixCommand(fallbackMethod = "defaultRest")
+    @HystrixCommand(fallbackMethod = "defaultRest")
 	@Retryable
-    @RequestMapping("index1")
+    @RequestMapping(value="index1",method=RequestMethod.GET)
 	public String getIndex1() {
     	log.info("index1.hhhhhh");
 		String msg=restTemplate.getForObject("http://cloud-server/index", String.class);
@@ -35,10 +36,12 @@ public class ClitentController {
     
     @Autowired
     IndexInterface indexInterface;
+    
+    
     @Retryable(maxAttempts=5)
     @ResponseBody
     @HystrixCommand(fallbackMethod = "defaultRest")
-    @RequestMapping("index2")
+    @RequestMapping(value="index2",method=RequestMethod.GET)
 	public String getIndex2() {
 		String msg=indexInterface.hi();
 		System.out.println("msg:"+msg);
