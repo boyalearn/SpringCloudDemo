@@ -3,6 +3,7 @@ package com.spring.cloud.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.remoting.RemoteAccessException;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -20,6 +21,9 @@ public class ClitentController {
 	
 	private Logger log=LoggerFactory.getLogger(this.getClass());
 	
+	@Value("${client.password}")
+	private String password;
+	
 	@Autowired
     private RestTemplate restTemplate;
 	
@@ -34,6 +38,13 @@ public class ClitentController {
 		return msg;
 	}
     
+	@ResponseBody
+	@RequestMapping(value="index4",method=RequestMethod.GET)
+	public String getIndex4() {
+		System.out.println("password:"+password);
+		return password;
+	}
+	
     @Autowired
     IndexInterface indexInterface;
     
