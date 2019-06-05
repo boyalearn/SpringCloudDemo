@@ -4,9 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.remoting.RemoteAccessException;
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +26,6 @@ public class ClitentController {
 	
 	@ResponseBody
     @HystrixCommand(fallbackMethod = "defaultRest")
-	@Retryable
     @RequestMapping(value="index1",method=RequestMethod.GET)
 	public String getIndex1() {
     	log.info("index1.hhhhhh");
@@ -49,7 +45,6 @@ public class ClitentController {
     IndexInterface indexInterface;
     
     
-    @Retryable(maxAttempts=5)
     @ResponseBody
     @HystrixCommand(fallbackMethod = "defaultRest")
     @RequestMapping(value="index2",method=RequestMethod.GET)
@@ -64,10 +59,5 @@ public class ClitentController {
     	return "have a error";
     }
 
-	@Recover
-	public String recover(RemoteAccessException e) {
-	    System.err.println(e.getMessage());
-	    return "call Error";
-	}
 
 }
