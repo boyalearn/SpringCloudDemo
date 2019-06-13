@@ -13,7 +13,14 @@ public class IndexController {
 	@ResponseBody
 	@RequestMapping("index")
 	public String index() {
+		System.out.println("Server1.index");
 		log.info("Server1.index");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "Hello World one";
 	}
 
