@@ -50,6 +50,7 @@ public class MyZuulPreFilter extends ZuulFilter{
         }
 	}
 
+	@SuppressWarnings("unused")
 	private void shouldNotFilter(RequestContext ctx) {
 		// TODO Auto-generated method stub
 		//不进行路由

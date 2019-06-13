@@ -19,6 +19,7 @@ public class MyZuulPostFilter extends ZuulFilter{
 		return true;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public Object run() {
 		RequestContext ctx = RequestContext.getCurrentContext();
