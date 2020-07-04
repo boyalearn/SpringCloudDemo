@@ -1,0 +1,10 @@
+/spring-cloud-client/spring-cloud-client.iml
+/spring-cloud-getway/spring-cloud-getway.iml
+/spring-cloud-server/target/
+/spring-cloud-configure/spring-cloud-configure.iml
+/spring-cloud-register/target/
+/spring-cloud-register/spring-cloud-register.iml
+/spring-cloud-server/spring-cloud-server.iml
+/spring-cloud-zuul/target/
+/.idea/
+/spring-cloud-zuul/spring-cloud-zuul.iml

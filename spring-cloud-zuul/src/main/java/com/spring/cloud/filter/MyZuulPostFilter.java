@@ -10,7 +10,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
 
-@Component
+//@Component
 public class MyZuulPostFilter extends ZuulFilter{
 
 	@Override
